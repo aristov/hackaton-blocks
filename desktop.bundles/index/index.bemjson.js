@@ -14,8 +14,13 @@
             block: 'progressbar',
             progress: 25
         }*/
-        {
+        /*{
             block: 'dragndrop'
+        }*/
+        {
+            block: 'calendar',
+            year: 2014,
+            month: 10
         }
     ]
 })

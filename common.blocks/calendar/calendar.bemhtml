@@ -1,0 +1,32 @@
+block('calendar')(
+    elem('month').tag()('table'),
+    elem('week').tag()('tr'),
+    elem('day').tag()('td'),
+    content()(function() {
+        var ctx = this.ctx,
+            year = ctx.year,
+            month = ctx.month - 1,
+            firstDayOfMonth = new Date(year, month, 1).getDay();
+
+        if (firstDayOfMonth === 0) firstDayOfMonth = 7;
+
+        var daysInMonth = new Date(year, month + 1, 0).getDate(),
+            weekCount = Math.ceil((daysInMonth + firstDayOfMonth - 1) / 7),
+            date = 1,
+            result = [];
+
+        for (var i = 1; i <= weekCount; i++) {
+            var week = [];
+            for (var j = 1; j <= 7; j++) {
+                var cell = (i - 1) * 7 + j;
+                week.push({
+                    elem: 'day',
+                    content: cell >= firstDayOfMonth && cell < daysInMonth + firstDayOfMonth ? date++ : ''
+                });
+            }
+            result.push({ elem: 'week', content: week });
+        }
+
+        return { elem: 'month', content: result };
+    })
+)
