@@ -1,5 +1,8 @@
 .calendar
 {
+    font-size: 3em;
+    margin: 0 auto;
+
     &__month
     {
         border-collapse: collapse;
@@ -8,7 +11,27 @@
     &__day
     {
         border: 1px solid black;
-        padding: 0.5em;
+        padding: 1em;
         text-align: center;
+
+        &_other-month
+        {
+            opacity: 0.5;
+        }
+
+        &_weekend
+        {
+            background-color: #fdd;
+        }
+
+        &_today
+        {
+            font-weight: bold;
+        }
+
+        &_selected
+        {
+            background-color: #aad;
+        }
     }
 }
