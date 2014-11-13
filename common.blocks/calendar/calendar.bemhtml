@@ -33,12 +33,44 @@ block('calendar')(
                         'today': currentDateString === cellDateString,
                         'selected': selectedDateString === cellDateString
                     },
-                    content: new Date(year, month, cellDate).getDate()
+                    content: {
+                        elem: 'cell',
+                        content: new Date(year, month, cellDate).getDate()
+                    }
                 });
             }
             result.push({ elem: 'week', content: week });
         }
 
-        return { elem: 'month', content: result };
-    })
+        return {
+            elem: 'month',
+            content: [
+                {
+                    elem: 'head'
+                },
+                {
+                    elem: 'body',
+                    content: result
+                }
+            ]
+        };
+    }),
+    elem('head')(
+        tag()('thead'),
+        content()(function() {
+            return {
+                tag: 'tr',
+                content: [
+                    { tag: 'th', content: 'mo' },
+                    { tag: 'th', content: 'tu' },
+                    { tag: 'th', content: 'we' },
+                    { tag: 'th', content: 'th' },
+                    { tag: 'th', content: 'fr' },
+                    { tag: 'th', content: 'sa' },
+                    { tag: 'th', content: 'su' }
+                ]
+            }
+        })
+    ),
+    elem('body').tag()('tbody')
 )

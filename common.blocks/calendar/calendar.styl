@@ -8,10 +8,17 @@
         border-collapse: collapse;
     }
 
+    &__cell
+    {
+        padding: 0.7em;
+        border: 0.1em solid transparent;
+        cursor: default;
+    }
+
     &__day
     {
         border: 1px solid black;
-        padding: 1em;
+        padding: 0;
         text-align: center;
 
         &_other-month
@@ -27,11 +34,26 @@
         &_today
         {
             font-weight: bold;
+
+            .calendar__cell
+            {
+                border-color: #666;
+            }
         }
 
-        &_selected
+        &_selected .calendar__cell
         {
-            background-color: #aad;
+            border-color: #aad;
         }
+
+        &:hover .calendar__cell
+        {
+            background-color: #ddf;
+        }
+    }
+
+    th
+    {
+        padding: 0.5em;
     }
 }
