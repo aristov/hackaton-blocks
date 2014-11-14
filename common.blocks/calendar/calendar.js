@@ -2,7 +2,7 @@ modules.define('calendar', ['i-bem__dom', 'BEMHTML'], function(provide, BEMDOM, 
 
 provide(BEMDOM.decl(this.name, {
 
-    _onArrowClick: function(e) {
+    _onSwitchClick: function(e) {
         var pos = this.getMod(e.currentTarget, 'dest'),
             params = this.params,
             month = params.month;
@@ -17,10 +17,11 @@ provide(BEMDOM.decl(this.name, {
             month = 1;
         }
 
-        BEMDOM.replace(this.domElem, BEMHTML.apply({
+        BEMDOM.update(this.domElem, BEMHTML.apply({
             block: 'calendar',
+            elem: 'content',
             year: params.year,
-            month: month
+            month: params.month = month
         }));
     },
 
@@ -30,7 +31,7 @@ provide(BEMDOM.decl(this.name, {
         if (this.hasMod(target, 'month', 'current')) {
             this.params.date = this.elemParams(target).date;
             this
-                .delMod(this.elem('day'), 'selected')
+                .delMod(this.findElem('day'), 'selected')
                 .setMod(target, 'selected')
                 ._emitChange();
         }
@@ -51,7 +52,7 @@ provide(BEMDOM.decl(this.name, {
     live: function() {
         var ptp = this.prototype;
         this
-            .liveBindTo('month-switch', 'click', ptp._onArrowClick)
+            .liveBindTo('month-switch', 'click', ptp._onSwitchClick)
             .liveBindTo('day', 'click', ptp._onDayClick);
     }
 

@@ -20,11 +20,23 @@
         /*{
             block: 'dragndrop'
         }*/
-        {
+        /*{
             block: 'calendar',
             year: 2014,
             month: 12,
             date: 7
+        }*/
+        /*{
+            tag: 'input',
+            attrs: { type: 'date' }
+        }*/
+        {
+            block: 'input',
+            mods: {
+                theme: 'islands',
+                size: 'xl',
+                type: 'datepicker'
+            }
         }
     ]
 })
