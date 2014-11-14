@@ -2,18 +2,18 @@ block('calendar').elem('month-select')(
     content()(function() {
         var _ctx = this._ctx,
             monthNames = {
-                0: 'jan',
-                1: 'feb',
-                2: 'mar',
-                3: 'apr',
-                4: 'may',
-                5: 'jun',
-                6: 'jul',
-                7: 'aug',
-                8: 'sep',
-                9: 'oct',
-                10: 'nov',
-                11: 'dec'
+                1: 'jan',
+                2: 'feb',
+                3: 'mar',
+                4: 'apr',
+                5: 'may',
+                6: 'jun',
+                7: 'jul',
+                8: 'aug',
+                9: 'sep',
+                10: 'oct',
+                11: 'nov',
+                12: 'dec'
             };
 
         return [
@@ -24,7 +24,7 @@ block('calendar').elem('month-select')(
             },
             {
                 elem: 'month-display',
-                content: [ monthNames[_ctx.month - 1], ' ', _ctx.year ]
+                content: [ monthNames[_ctx.month], ' ', _ctx.year ]
             },
             {
                 elem: 'month-switch',
