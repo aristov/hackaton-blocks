@@ -12,7 +12,6 @@ provide(Input.decl({ modName: 'type', modVal: 'datepicker' }, {
                 popup.setMod('visible');
 
                 popup.findBlockInside('calendar').on('change', this._onCalendarChange, this);
-
             }
         }
     },

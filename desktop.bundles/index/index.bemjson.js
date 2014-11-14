@@ -8,8 +8,7 @@
         { elem : 'css', url : '_index.css' }
     ],
     scripts: [
-        { elem : 'js', url : '_index.js' },
-        { elem : 'js', url : 'index.bemhtml.js' }
+        { elem : 'js', url : '_index.js' }
     ],
     mods : { theme : 'islands' },
     content : [
