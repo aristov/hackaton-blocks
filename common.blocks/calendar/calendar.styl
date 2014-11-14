@@ -1,7 +1,9 @@
 .calendar
 {
-    font-size: 3em;
+    font-size: 2em;
     margin: 0 auto;
+    position: relative;
+    display: inline-block;
 
     &__month
     {
@@ -10,25 +12,32 @@
 
     &__cell
     {
-        padding: 0.7em;
+        padding: 0.7em 0.5em;
         border: 0.1em solid transparent;
         cursor: default;
     }
 
     &__day
     {
-        border: 1px solid black;
+        border: 1px solid transparent;
         padding: 0;
         text-align: center;
 
-        &_other-month
+        &_month_prev,
+        &_month_next
         {
             opacity: 0.5;
         }
 
         &_weekend
         {
-            background-color: #fdd;
+            color: #c00;
+        }
+
+        &_selected .calendar__cell
+        {
+            border-color: #aad;
+            background-color: #eef;
         }
 
         &_today
@@ -41,11 +50,6 @@
             }
         }
 
-        &_selected .calendar__cell
-        {
-            border-color: #aad;
-        }
-
         &:hover .calendar__cell
         {
             background-color: #ddf;
@@ -56,4 +60,38 @@
     {
         padding: 0.5em;
     }
+
+    &__switcher
+    {
+        text-align: center;
+        background-color: #ddf;
+        padding: 0.5em;
+    }
+
+    &__arrow
+    {
+        position: absolute;
+        background-color: #eef;
+        padding: 0.5em 2em;
+        cursor: pointer;
+
+        &:hover
+        {
+            background-color: #fafaff
+        }
+
+        &_pos_left
+        {
+            top: 0;
+            left: 0;
+        }
+
+        &_pos_right
+        {
+            top: 0;
+            right: 0;
+        }
+    }
 }
+
+

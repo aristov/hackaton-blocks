@@ -1,4 +1,15 @@
 block('calendar')(
+    /*def()(function() {
+        applyNext({ _ctx: this.ctx });
+    }),*/
+    js()(function() {
+        var ctx = this.ctx;
+        return {
+            year: ctx.year,
+            month: ctx.month,
+            date: ctx.date
+        }
+    }),
     elem('month').tag()('table'),
     elem('week').tag()('tr'),
     elem('day').tag()('td'),
@@ -23,37 +34,64 @@ block('calendar')(
             for (var j = 1; j <= 7; j++) {
                 var cell = (i - 1) * 7 + j,
                     cellDate = cell - firstDayOfMonth + 1,
-                    cellDateString = [year, month, cellDate].join('.');
+                    cellDateString = [year, month, cellDate].join('.'),
+                    value = new Date(year, month, cellDate).getDate();
 
                 week.push({
                     elem: 'day',
                     elemMods: {
-                        'other-month': cellDate < 1 || cellDate > daysInMonth,
+                        'month': cellDate < 1 ? 'prev' : cellDate > daysInMonth ? 'next' : 'current',
                         'weekend': j > 5,
                         'today': currentDateString === cellDateString,
                         'selected': selectedDateString === cellDateString
                     },
+                    js: { date: value },
                     content: {
                         elem: 'cell',
-                        content: new Date(year, month, cellDate).getDate()
+                        content: value
                     }
                 });
             }
             result.push({ elem: 'week', content: week });
         }
 
-        return {
-            elem: 'month',
-            content: [
-                {
-                    elem: 'head'
-                },
-                {
-                    elem: 'body',
-                    content: result
-                }
-            ]
-        };
+        var monthNames = {
+            0: 'jan',
+            1: 'feb',
+            2: 'mar',
+            3: 'apr',
+            4: 'may',
+            5: 'jun',
+            6: 'jul',
+            7: 'aug',
+            8: 'sep',
+            9: 'oct',
+            10: 'nov',
+            11: 'dec'
+        }
+
+        return [
+            {
+                elem: 'switcher',
+                content: [
+                    { elem: 'arrow', elemMods: { pos: 'left' }, content: '<' },
+                    { elem: 'text', content: [ monthNames[month], ' ', year ] },
+                    { elem: 'arrow', elemMods: { pos: 'right' }, content: '>' }
+                ]
+            },
+            {
+                elem: 'month',
+                content: [
+                    {
+                        elem: 'head'
+                    },
+                    {
+                        elem: 'body',
+                        content: result
+                    }
+                ]
+            }
+        ];
     }),
     elem('head')(
         tag()('thead'),
