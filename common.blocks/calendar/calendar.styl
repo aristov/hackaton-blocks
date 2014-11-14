@@ -5,12 +5,49 @@
     position: relative;
     display: inline-block;
 
-    &__month
+    &__month-select
+    {
+        text-align: center;
+        background-color: #ddf;
+        padding: 0.5em;
+    }
+
+    &__month-switch
+    {
+        position: absolute;
+        background-color: #eef;
+        padding: 0.5em 2em;
+        cursor: pointer;
+
+        &:hover
+        {
+            background-color: #fafaff;
+        }
+
+        &_dest_prev
+        {
+            top: 0;
+            left: 0;
+        }
+
+        &_dest_next
+        {
+            top: 0;
+            right: 0;
+        }
+    }
+
+    &__grid
     {
         border-collapse: collapse;
     }
 
-    &__cell
+    &__day-name
+    {
+        padding: 0.5em;
+    }
+
+    &__date
     {
         padding: 0.7em 0.5em;
         border: 0.1em solid transparent;
@@ -34,7 +71,7 @@
             color: #c00;
         }
 
-        &_selected .calendar__cell
+        &_selected .calendar__date
         {
             border-color: #aad;
             background-color: #eef;
@@ -44,52 +81,15 @@
         {
             font-weight: bold;
 
-            .calendar__cell
+            .calendar__date
             {
                 border-color: #666;
             }
         }
 
-        &:hover .calendar__cell
+        &:hover .calendar__date
         {
             background-color: #ddf;
-        }
-    }
-
-    th
-    {
-        padding: 0.5em;
-    }
-
-    &__switcher
-    {
-        text-align: center;
-        background-color: #ddf;
-        padding: 0.5em;
-    }
-
-    &__arrow
-    {
-        position: absolute;
-        background-color: #eef;
-        padding: 0.5em 2em;
-        cursor: pointer;
-
-        &:hover
-        {
-            background-color: #fafaff
-        }
-
-        &_pos_left
-        {
-            top: 0;
-            left: 0;
-        }
-
-        &_pos_right
-        {
-            top: 0;
-            right: 0;
         }
     }
 }

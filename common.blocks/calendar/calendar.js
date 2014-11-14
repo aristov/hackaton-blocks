@@ -3,11 +3,11 @@ modules.define('calendar', ['i-bem__dom', 'BEMHTML'], function(provide, BEMDOM, 
 provide(BEMDOM.decl(this.name, {
 
     _onArrowClick: function(e) {
-        var pos = this.getMod(e.currentTarget, 'pos'),
+        var pos = this.getMod(e.currentTarget, 'dest'),
             params = this.params,
             month = params.month;
 
-        pos === 'right'? month++ : month--;
+        pos === 'next'? month++ : month--;
         if (month < 1) {
             params.year--;
             month = 12;
@@ -51,7 +51,7 @@ provide(BEMDOM.decl(this.name, {
     live: function() {
         var ptp = this.prototype;
         this
-            .liveBindTo('arrow', 'click', ptp._onArrowClick)
+            .liveBindTo('month-switch', 'click', ptp._onArrowClick)
             .liveBindTo('day', 'click', ptp._onDayClick);
     }
 

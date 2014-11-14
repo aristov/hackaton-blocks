@@ -1,7 +1,7 @@
 block('calendar')(
-    /*def()(function() {
+    def()(function() {
         applyNext({ _ctx: this.ctx });
-    }),*/
+    }),
     js()(function() {
         var ctx = this.ctx;
         return {
@@ -10,105 +10,11 @@ block('calendar')(
             date: ctx.date
         }
     }),
-    elem('month').tag()('table'),
-    elem('week').tag()('tr'),
-    elem('day').tag()('td'),
-    content()(function() {
-        var ctx = this.ctx,
-            year = ctx.year,
-            month = ctx.month - 1,
-            date = ctx.date,
-            selectedDateString = [year, month, date].join('.'),
-            firstDayOfMonth = new Date(year, month, 1).getDay(),
-            now = new Date(),
-            currentDateString = [now.getFullYear(), now.getMonth(), now.getDate()].join('.');
-
-        if (firstDayOfMonth === 0) firstDayOfMonth = 7;
-
-        var daysInMonth = new Date(year, month + 1, 0).getDate(),
-            weekCount = Math.ceil((daysInMonth + firstDayOfMonth - 1) / 7),
-            result = [];
-
-        for (var i = 1; i <= weekCount; i++) {
-            var week = [];
-            for (var j = 1; j <= 7; j++) {
-                var cell = (i - 1) * 7 + j,
-                    cellDate = cell - firstDayOfMonth + 1,
-                    cellDateString = [year, month, cellDate].join('.'),
-                    value = new Date(year, month, cellDate).getDate();
-
-                week.push({
-                    elem: 'day',
-                    elemMods: {
-                        'month': cellDate < 1 ? 'prev' : cellDate > daysInMonth ? 'next' : 'current',
-                        'weekend': j > 5,
-                        'today': currentDateString === cellDateString,
-                        'selected': selectedDateString === cellDateString
-                    },
-                    js: { date: value },
-                    content: {
-                        elem: 'cell',
-                        content: value
-                    }
-                });
-            }
-            result.push({ elem: 'week', content: week });
-        }
-
-        var monthNames = {
-            0: 'jan',
-            1: 'feb',
-            2: 'mar',
-            3: 'apr',
-            4: 'may',
-            5: 'jun',
-            6: 'jul',
-            7: 'aug',
-            8: 'sep',
-            9: 'oct',
-            10: 'nov',
-            11: 'dec'
-        }
-
-        return [
-            {
-                elem: 'switcher',
-                content: [
-                    { elem: 'arrow', elemMods: { pos: 'left' }, content: '<' },
-                    { elem: 'text', content: [ monthNames[month], ' ', year ] },
-                    { elem: 'arrow', elemMods: { pos: 'right' }, content: '>' }
-                ]
-            },
-            {
-                elem: 'month',
-                content: [
-                    {
-                        elem: 'head'
-                    },
-                    {
-                        elem: 'body',
-                        content: result
-                    }
-                ]
-            }
-        ];
-    }),
-    elem('head')(
-        tag()('thead'),
-        content()(function() {
-            return {
-                tag: 'tr',
-                content: [
-                    { tag: 'th', content: 'mo' },
-                    { tag: 'th', content: 'tu' },
-                    { tag: 'th', content: 'we' },
-                    { tag: 'th', content: 'th' },
-                    { tag: 'th', content: 'fr' },
-                    { tag: 'th', content: 'sa' },
-                    { tag: 'th', content: 'su' }
-                ]
-            }
-        })
-    ),
-    elem('body').tag()('tbody')
+    content()([
+        { elem: 'month-select' },
+        { elem: 'grid' }
+    ]),
+    elem('row').tag()('tr'),
+    elem('day-name').tag()('th'),
+    elem('day').tag()('td')
 )

@@ -23,8 +23,8 @@
         {
             block: 'calendar',
             year: 2014,
-            month: 11,
-            date: 8
+            month: 12,
+            date: 7
         }
     ]
 })
