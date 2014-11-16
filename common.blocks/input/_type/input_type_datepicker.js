@@ -9,7 +9,7 @@ provide(Input.decl({ modName: 'type', modVal: 'datepicker' }, {
 
                 var popup = this._popup || (this._popup = this.findBlockInside('popup'));
 
-                popup.setMod('visible');
+                popup.setAnchor(this).setMod('visible');
 
                 popup.findBlockInside('calendar').on('change', this._onCalendarChange, this);
             }

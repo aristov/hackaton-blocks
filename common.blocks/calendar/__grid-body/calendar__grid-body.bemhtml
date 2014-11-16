@@ -15,10 +15,10 @@ block('calendar').elem('grid-body')(
             weekCount = Math.ceil((daysInMonth + firstDayOfMonth - 1) / 7),
             result = [];
 
-        for (var i = 1; i <= weekCount; i++) {
+        for (var i = 0; i < weekCount; i++) {
             var row = [];
             for (var j = 1; j <= 7; j++) {
-                var date = ((i - 1) * 7 + j) - firstDayOfMonth + 1,
+                var date = (i * 7 + j) - firstDayOfMonth + 1,
                     dateValue = new Date(year, month, date).getDate(),
                     dateString = [year, month, date].join('.');
 
