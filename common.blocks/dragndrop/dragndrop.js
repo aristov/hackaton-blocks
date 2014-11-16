@@ -8,9 +8,9 @@ provide(BEMDOM.decl(this.name, {
                 var domNode = this.domElem[0];
 
                 this.domElem
-                    .css('position', 'absolute')
                     .css('top', this._top = domNode.offsetTop)
-                    .css('left', this._left = domNode.offsetLeft);
+                    .css('left', this._left = domNode.offsetLeft)
+                    .css('position', 'absolute');
             }
         }
     },
